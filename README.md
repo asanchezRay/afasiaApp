@@ -1,10 +1,10 @@
-# afasiapp
+# AfasiaApp
 
 AfasiaApp Flutter
 
 ## Descripción:
 
-Este proyecto es una aplicación para dispositivos moviles para optar al título de la carrera ingeniería civil informática
+Este proyecto es una aplicación para dispositivos moviles (Tablet) para optar al título de la carrera ingeniería civil informática
 
 ## Tecnologias:
 - [Flutter: versión 2.8.1](https://flutter.dev/docs/get-started)
