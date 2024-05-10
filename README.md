@@ -12,7 +12,7 @@ Este proyecto es una aplicación para dispositivos moviles (Tablet) para optar a
 
 ## Compilación:
 ```
-$ git clone https://github.com/asanchezRay/afasia.git
+$ git clone https://github.com/asanchezRay/afasiaApp.git
 $ flutter pub get
 $ flutter build apk
 
