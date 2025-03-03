@@ -2,27 +2,27 @@
 
 AfasiaApp Flutter
 
-## Descripción:
+## Description:
 
-Este proyecto es una aplicación para dispositivos moviles (Tablet) para optar al título de la carrera ingeniería civil informática
+This project is an application for mobile devices (Tablet) to qualify for the degree in Civil Computer Engineering.
 
-## Tecnologias:
+## Technologies:
 - [Flutter: versión 2.8.1](https://flutter.dev/docs/get-started)
 - [Dart: versión 2.15.1](https://flutter.dev/docs/get-started)
 
-## Compilación:
+## Compilation:
 ```
 $ git clone https://github.com/asanchezRay/afasiaApp.git
 $ flutter pub get
 $ flutter build apk
 
 ```
-## Consideraciones
-- Debe tener un dispositivo (emulador o dispositivo fisico) conectado al computador, verificar esto utilizando el comando.
+## Considerations
+- You must have a device (emulator or physical device) connected to the computer. Verify this using the command.
 ```
-$ flutter doctor
+$ flutter devices
 ```
-- Cuando el dispositivo este conectado, debe ubicarse en la carpeta donde se encuentra el proyecto y utilizar el siguiente comando para poder realizar debug y desarrollo de nuevas funcionalidades.
+- When the device is connected, navigate to the folder where the project is located and use the following command to debug and develop new features.
  ```
 $ flutter run
 ```
