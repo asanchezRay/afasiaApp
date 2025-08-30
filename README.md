@@ -143,7 +143,13 @@ fvm flutter build appbundle --release
 fvm flutter build ios --release
 ```
 
-## 📁 Project Structure
+## 📁 Project Structure & Software Architecture
+
+AfasiaApp implements a multi-layered architecture specifically designed for speech therapy applications, focusing on modularity, maintainability, and clinical effectiveness. The architecture follows the N-tier pattern with clear separation of concerns between presentation, business logic, and data persistence layers.
+
+### Repository Structure
+
+The repository structure directly reflects the application's architecture:
 
 ```
 afasiaApp/
@@ -156,16 +162,129 @@ afasiaApp/
 ├── lib/                    # Main application code
 │   ├── Screens/            # UI screens and pages
 │   │   ├── Activities/     # Therapy activity screens
-│   │   │   ├── Lectura/   # Reading activities
-│   │   │   └── ...        # Other activity types
-│   │   └── Welcome/       # Welcome and onboarding
+│   │   │   ├── Comprension/  # Comprehension exercises
+│   │   │   ├── Escritura/    # Writing exercises
+│   │   │   ├── Lectura/      # Reading activities
+│   │   │   └── ReconocimientoAuditivo/ # Auditory recognition
+│   │   ├── AddPatient/       # Patient management
+│   │   ├── AssignTest/       # Test assignment
+│   │   ├── Login/            # Authentication
+│   │   ├── Profile/          # User profiles
+│   │   ├── Revisar/          # Results review
+│   │   └── Welcome/          # Welcome and onboarding
 │   ├── components/         # Reusable UI components
-│   ├── database/          # SQLite database management
-│   ├── constants.dart     # App constants and configurations
+│   ├── database/          # Data management
+│   │   ├── models/        # Data models
+│   │   └── database.dart  # SQLite implementation
+│   ├── constants.dart     # Global app constants
 │   └── main.dart          # Application entry point
 ├── pubspec.yaml           # Dependencies and project configuration
 └── README.md             # This file
 ```
+
+### High-Level Architecture
+
+The application architecture follows a multi-layered approach as illustrated in the diagrams:
+
+1. **Presentation Layer**
+   - Composed of UI Components and Screens
+   - Implements the Flutter Widget Tree pattern for UI rendering
+   - Handles user input and visual feedback
+   - Organized by therapy activity types (Reading, Writing, Comprehension, etc.)
+
+2. **Application Logic Layer**
+   - Implements clinical therapy workflows
+   - Contains controllers for different activity types
+   - Manages user session state and application flow
+   - Coordinates between UI and data access layers
+
+3. **Data Access Layer**
+   - Repository pattern implementation (`database.dart`)
+   - Entity models for domain objects (`models/` directory)
+   - Handles local persistence through SQLite
+   - Manages data transformations between domain and persistence formats
+
+4. **Core Services**
+   - Audio recording and playback services
+   - Image handling services
+   - Authentication and user management
+   - Internationalization support
+
+### Therapy Module Architecture
+
+Each therapy module (Reading, Writing, Auditory Recognition) follows a consistent architectural pattern:
+
+1. **Activity Screens**
+   - Present therapy exercises to patients
+   - Capture patient responses and interactions
+   - Provide visual and audio feedback
+
+2. **Activity Controllers**
+   - Implement therapy-specific logic
+   - Track patient progress within activities
+   - Apply scoring and evaluation rules
+
+3. **Data Models**
+   - Define structured representation of activities
+   - Store patient responses and results
+   - Support progress tracking and reporting
+
+### Data Flow & Communication
+
+The application implements a systematic data flow pattern:
+
+1. User interactions are captured by the UI components
+2. Events are passed to the appropriate controllers
+3. Controllers process the events according to therapy rules
+4. Data access layer persists results in the local SQLite database
+5. UI is updated to reflect the new state
+
+All communication between layers follows a strict dependency rule: higher layers may reference lower layers, but lower layers must not have direct dependencies on higher layers, ensuring a clean separation of concerns and improved maintainability.
+
+## 📐 Design Patterns and Development Rules
+
+AfasiaApp implements several design patterns and follows specific development rules to ensure code quality, maintainability, and scalability:
+
+### Design Patterns
+
+1. **Repository Pattern**: 
+   - Implemented in the `AfasiaDatabase` class that centralizes all data access operations
+   - Provides an abstraction over SQLite database operations
+   - Facilitates separation between business logic and data access
+
+2. **Model-View (MV) Pattern**: 
+   - Views (Screens) are separated from data models
+   - Models (`paciente.class.dart`, `fonoaudiologo.class.dart`, etc.) encapsulate data and provide methods to manipulate them
+   - Views are only responsible for presenting information
+
+3. **Reusable Components**:
+   - Implementation of custom reusable widgets in the `components/` folder
+   - Examples: `rounded_button.dart`, `rounded_input_field.dart`, `gender_selector.dart`
+   - Promotes UI consistency and reduces code duplication
+
+4. **Dependency Injection**:
+   - Use of external dependencies through Flutter's package system
+   - Centralized service initialization in `main.dart`
+
+### Development Rules
+
+1. **Separation of Concerns**:
+   - Each class and file has a single, well-defined responsibility
+   - Directory structure reflects the different system responsibilities
+
+2. **Object-Oriented Programming**:
+   - Use of classes to model domain entities (patients, activities, etc.)
+   - Encapsulation of data and behavior in specific models
+   - Inheritance and polymorphism for different types of therapeutic activities
+
+3. **State Management**:
+   - Application state managed at the widget level when local
+   - Critical state persistence through SQLite database
+
+4. **Naming Conventions**:
+   - Class names in PascalCase (e.g., `Paciente`, `Fonoaudiologo`)
+   - Method and variable names in camelCase (e.g., `insertPaciente`, `getAllActividades`)
+   - File names in snake_case (e.g., `rounded_button.dart`)
 
 ## 🛠 Technologies
 
