@@ -145,7 +145,7 @@ fvm flutter build ios --release
 
 ## 📁 Project Structure & Software Architecture
 
-AfasiaApp implements a multi-layered architecture specifically designed for speech therapy applications, focusing on modularity, maintainability, and clinical effectiveness. The architecture follows the N-tier pattern with clear separation of concerns between presentation, business logic, and data persistence layers.
+Internally, AfasiaApp implements an architecture of three layers, specifically designed for speech therapy applications, focusing on modularity, modifiability, and clinical effectiveness. The architecture provides a clear separation of concerns between presentation (user interface), business logic, and data persistence (data access) layers.
 
 ### Repository Structure
 
@@ -172,27 +172,33 @@ afasiaApp/
 │   │   ├── Profile/          # User profiles
 │   │   ├── Revisar/          # Results review
 │   │   └── Welcome/          # Welcome and onboarding
-│   ├── components/         # Reusable UI components
-│   ├── database/          # Data management
+│   ├── components/         # User Interface (Presentation) Layer: Reusable components
+│   ├── database/          # Data Access Layer
 │   │   ├── models/        # Data models
 │   │   └── database.dart  # SQLite implementation
-│   ├── constants.dart     # Global app constants
+│   ├── constants.dart     # Business Logic Layer: Global app constants
 │   └── main.dart          # Application entry point
 ├── pubspec.yaml           # Dependencies and project configuration
 └── README.md             # This file
 ```
 
+Note the correspondence between directory structure and the three-layer architecture:
+
+- **User Interface (Presentation) Layer**: `lib/Screens/` and `lib/components/`
+- **Business Logic Layer**: Activity controllers and business rules
+- **Data Access Layer**: `lib/database/` directory
+
 ### High-Level Architecture
 
-The application architecture follows a multi-layered approach as illustrated in the diagrams:
+The application architecture follows a three-layered approach:
 
-1. **Presentation Layer**
+1. **User Interface Layer**
    - Composed of UI Components and Screens
    - Implements the Flutter Widget Tree pattern for UI rendering
    - Handles user input and visual feedback
    - Organized by therapy activity types (Reading, Writing, Comprehension, etc.)
 
-2. **Application Logic Layer**
+2. **Business Logic Layer**
    - Implements clinical therapy workflows
    - Contains controllers for different activity types
    - Manages user session state and application flow
@@ -204,30 +210,24 @@ The application architecture follows a multi-layered approach as illustrated in 
    - Handles local persistence through SQLite
    - Manages data transformations between domain and persistence formats
 
-4. **Core Services**
-   - Audio recording and playback services
-   - Image handling services
-   - Authentication and user management
-   - Internationalization support
+### Therapy Module Implementation
 
-### Therapy Module Architecture
+The therapy modules (Reading, Writing, Auditory Recognition) are implemented following the three-layer architecture:
 
-Each therapy module (Reading, Writing, Auditory Recognition) follows a consistent architectural pattern:
+1. **User Interface Components**:
+   - Screens that present therapy exercises to patients
+   - UI elements that capture patient responses and interactions
+   - Visual and audio feedback components
 
-1. **Activity Screens**
-   - Present therapy exercises to patients
-   - Capture patient responses and interactions
-   - Provide visual and audio feedback
+2. **Business Logic**:
+   - Therapy-specific business rules
+   - Patient progress tracking logic
+   - Scoring and evaluation algorithms
 
-2. **Activity Controllers**
-   - Implement therapy-specific logic
-   - Track patient progress within activities
-   - Apply scoring and evaluation rules
-
-3. **Data Models**
-   - Define structured representation of activities
-   - Store patient responses and results
-   - Support progress tracking and reporting
+3. **Data Models and Storage**:
+   - Structured data representations for therapy activities
+   - Data persistence for patient responses
+   - Progress tracking and reporting data structures
 
 ### Data Flow & Communication
 
@@ -241,28 +241,40 @@ The application implements a systematic data flow pattern:
 
 All communication between layers follows a strict dependency rule: higher layers may reference lower layers, but lower layers must not have direct dependencies on higher layers, ensuring a clean separation of concerns and improved maintainability.
 
-## 📐 Design Patterns and Development Rules
+## 📐 Development Rules and Practices
 
-AfasiaApp implements several design patterns and follows specific development rules to ensure code quality, maintainability, and scalability:
+AfasiaApp follows specific development rules and best practices to ensure code quality, maintainability, and scalability:
 
-### Design Patterns
+### Architectural Patterns
 
 1. **Repository Pattern**: 
    - Implemented in the `AfasiaDatabase` class that centralizes all data access operations
    - Provides an abstraction over SQLite database operations
    - Facilitates separation between business logic and data access
 
-2. **Model-View (MV) Pattern**: 
+2. **Model-View-Controller (MVC) Concepts**: 
    - Views (Screens) are separated from data models
    - Models (`paciente.class.dart`, `fonoaudiologo.class.dart`, etc.) encapsulate data and provide methods to manipulate them
-   - Views are only responsible for presenting information
+   - Controller logic handles interactions between views and models
 
-3. **Reusable Components**:
+3. **Singleton Pattern**:
+   - Applied in the database implementation to ensure a single instance
+   - Database connections are managed through a single access point
+   - Prevents multiple database connections and ensures data consistency
+
+4. **Factory Method Pattern**:
+   - Used in question controllers to create different types of questions
+   - The `_setQuestion()` method in controllers acts as a factory that produces questions based on difficulty level
+   - Encapsulates the creation logic and provides a consistent interface
+
+### Development Practices
+
+1. **Reusable UI Components**:
    - Implementation of custom reusable widgets in the `components/` folder
    - Examples: `rounded_button.dart`, `rounded_input_field.dart`, `gender_selector.dart`
    - Promotes UI consistency and reduces code duplication
 
-4. **Dependency Injection**:
+2. **Service Organization**:
    - Use of external dependencies through Flutter's package system
    - Centralized service initialization in `main.dart`
 
