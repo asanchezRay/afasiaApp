@@ -194,8 +194,8 @@ afasiaApp/
 Note the correspondence between repository structure and our architecture:
 
 - **User Interface Layer**: `lib/Screens/` and `lib/components/`
-- **Business Logic Layer**: Activity controllers and business rules
-- **Data Access Layer**: `lib/database/` directory
+- **Business Logic Layer**: `lib/Screens/Activities/{activity_type}/{activity}/controllers`
+- **Data Access Layer**: `lib/database/`
 
 ### High-Level Architecture
 
