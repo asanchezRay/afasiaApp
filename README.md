@@ -3,15 +3,24 @@
 A comprehensive Flutter application designed for speech therapy and aphasia treatment on tablet devices.
 
 ## 📋 Table of Contents
-- [Description](#description)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Technologies](#technologies)
-- [Contributing](#contributing)
-- [License](#license)
+- [Description](#-description)
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Project Structure & Software Architecture](#-project-structure--software-architecture)
+  - [Repository Structure](#repository-structure)
+  - [High-Level Architecture](#high-level-architecture)
+  - [Therapy Module Implementation](#therapy-module-implementation)
+  - [Data Flow & Communication](#data-flow--communication)
+- [Development Rules and Practices](#-development-rules-and-practices)
+  - [Architectural Patterns](#architectural-patterns)
+  - [Development Practices](#development-practices)
+  - [Development Rules](#development-rules)
+- [Technologies](#-technologies)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Support](#-support)
 
 ## 📖 Description
 
