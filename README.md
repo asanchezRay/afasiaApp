@@ -253,7 +253,7 @@ The application implements a systematic data flow pattern:
 
 All communication between layers follows a strict dependency rule: higher layers may reference lower layers, but lower layers must not have direct dependencies on higher layers, ensuring a clean separation of concerns and improved maintainability.
 
-## 📐 Development Rules and Practices
+## 📐 Design Patterns
 
 AfasiaApp follows specific development rules and best practices to ensure code quality, maintainability, and scalability:
 
