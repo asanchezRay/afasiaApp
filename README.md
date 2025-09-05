@@ -13,7 +13,7 @@ A comprehensive Flutter application designed for speech therapy and aphasia trea
   - [High-Level Architecture](#high-level-architecture)
   - [Therapy Module Implementation](#therapy-module-implementation)
   - [Data Flow & Communication](#data-flow--communication)
-- [Development Rules and Practices](#-development-rules-and-practices)
+- [Design Patterns](#design-patterns)
   - [Architectural Patterns](#architectural-patterns)
   - [Development Practices](#development-practices)
   - [Development Rules](#development-rules)
