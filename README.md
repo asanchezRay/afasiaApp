@@ -219,7 +219,7 @@ The application architecture follows our architecture approach:
    - Handles local persistence through SQLite
    - Manages data transformations between domain and persistence formats
 
-![Layer Architecture Diagram](layer-diagram.png)
+<img src="layer-diagram.png" alt="Layer Architecture Diagram" width="500">
 *Our architecture diagram implemented in AfasiaApp*
 
 ### Therapy Module Implementation
@@ -274,11 +274,11 @@ AfasiaApp follows specific development rules and best practices to ensure code q
    - The `_setQuestion()` method in controllers acts as a factory that produces questions based on difficulty level
    - Encapsulates the creation logic and provides a consistent interface
 
-4. **Bridge/Adapter Pattern**:
-   - Implemented in UI components like `TextFieldContainer` that wraps and adapts native widgets
+4. **Bridge Pattern**:
    - `RoundedInputField`, `RoundedDatepicker` and other components bridge the gap between raw Flutter widgets and application-specific styling
 
 5. **Wrapper Pattern**:
+   - Implemented in UI components like `TextFieldContainer` that wraps and adapts native widgets
    - The Flutter Phoenix wrapper in `main.dart` provides application restart functionality
    - Audio playback functionality is wrapped with `AssetsAudioPlayer` for simplified usage
 
