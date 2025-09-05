@@ -172,7 +172,7 @@ afasiaApp/
 │   │   ├── Profile/          # User profiles
 │   │   ├── Revisar/          # Results review
 │   │   └── Welcome/          # Welcome and onboarding
-│   ├── components/         # User Interface (Presentation) Layer: Reusable components
+│   ├── components/         # User Interface Layer: Reusable components
 │   ├── database/          # Data Access Layer
 │   │   ├── models/        # Data models
 │   │   └── database.dart  # SQLite implementation
@@ -182,15 +182,15 @@ afasiaApp/
 └── README.md             # This file
 ```
 
-Note the correspondence between directory structure and the three-layer architecture:
+Note the correspondence between repository structure and our architecture:
 
-- **User Interface (Presentation) Layer**: `lib/Screens/` and `lib/components/`
+- **User Interface Layer**: `lib/Screens/` and `lib/components/`
 - **Business Logic Layer**: Activity controllers and business rules
 - **Data Access Layer**: `lib/database/` directory
 
 ### High-Level Architecture
 
-The application architecture follows a three-layered approach:
+The application architecture follows our architecture approach:
 
 1. **User Interface Layer**
    - Composed of UI Components and Screens
@@ -210,9 +210,12 @@ The application architecture follows a three-layered approach:
    - Handles local persistence through SQLite
    - Manages data transformations between domain and persistence formats
 
+![Layer Architecture Diagram](layer-diagram.png)
+*Our architecture diagram implemented in AfasiaApp*
+
 ### Therapy Module Implementation
 
-The therapy modules (Reading, Writing, Auditory Recognition) are implemented following the three-layer architecture:
+The therapy modules (Reading, Writing, Auditory Recognition) are implemented following our architecture:
 
 1. **User Interface Components**:
    - Screens that present therapy exercises to patients
@@ -252,20 +255,23 @@ AfasiaApp follows specific development rules and best practices to ensure code q
    - Provides an abstraction over SQLite database operations
    - Facilitates separation between business logic and data access
 
-2. **Model-View-Controller (MVC) Concepts**: 
-   - Views (Screens) are separated from data models
-   - Models (`paciente.class.dart`, `fonoaudiologo.class.dart`, etc.) encapsulate data and provide methods to manipulate them
-   - Controller logic handles interactions between views and models
-
-3. **Singleton Pattern**:
+2. **Singleton Pattern**:
    - Applied in the database implementation to ensure a single instance
    - Database connections are managed through a single access point
    - Prevents multiple database connections and ensures data consistency
 
-4. **Factory Method Pattern**:
+3. **Factory Method Pattern**:
    - Used in question controllers to create different types of questions
    - The `_setQuestion()` method in controllers acts as a factory that produces questions based on difficulty level
    - Encapsulates the creation logic and provides a consistent interface
+
+4. **Bridge/Adapter Pattern**:
+   - Implemented in UI components like `TextFieldContainer` that wraps and adapts native widgets
+   - `RoundedInputField`, `RoundedDatepicker` and other components bridge the gap between raw Flutter widgets and application-specific styling
+
+5. **Wrapper Pattern**:
+   - The Flutter Phoenix wrapper in `main.dart` provides application restart functionality
+   - Audio playback functionality is wrapped with `AssetsAudioPlayer` for simplified usage
 
 ### Development Practices
 
@@ -301,10 +307,12 @@ AfasiaApp follows specific development rules and best practices to ensure code q
 ## 🛠 Technologies
 
 ### Core Framework
+
 - **Flutter**: 2.8.1 - UI framework for cross-platform development
 - **Dart**: 2.15.1 - Programming language
 
 ### Key Dependencies
+
 - **sqflite**: ^1.3.0 - SQLite database for local storage
 - **flutter_sound**: ^2.0.3 - Audio recording and playback
 - **image_picker**: ^0.8.0+4 - Image selection functionality
@@ -313,12 +321,14 @@ AfasiaApp follows specific development rules and best practices to ensure code q
 - **flutter_localizations** - Internationalization support
 
 ### UI Components
+
 - **syncfusion_flutter_sliders**: ^18.4.35-beta - Interactive sliders
 - **flutter_colorpicker**: ^0.3.5 - Color selection tools
 - **flutter_spinkit**: ^4.1.2 - Loading animations
 - **badges**: ^1.1.6 - UI badges and indicators
 
 ### Utilities
+
 - **permission_handler**: ^5.0.1+1 - Device permissions management
 - **path_provider**: ^2.0.2 - File system access
 - **screenshot**: ^0.3.0 - Screen capture functionality
@@ -335,6 +345,7 @@ We welcome contributions to improve AfasiaApp! Please follow these steps:
 5. Open a Pull Request
 
 ### Development Guidelines
+
 - Follow Flutter/Dart coding conventions
 - Add comments for complex logic
 - Test your changes on both Android and iOS
