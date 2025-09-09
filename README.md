@@ -1,4 +1,4 @@
-# AfasiaApp
+# *MyAphasia*
 
 A comprehensive Flutter application designed for speech therapy and aphasia treatment on tablet devices.
 
@@ -24,7 +24,7 @@ A comprehensive Flutter application designed for speech therapy and aphasia trea
 
 ## 📖 Description
 
-AfasiaApp is a specialized mobile application developed for tablets, designed to assist in speech therapy and aphasia treatment. This project was created as part of a Civil Computer Engineering degree program and focuses on providing interactive activities to help patients with language disorders improve their communication skills.
+*MyAphasia* is a specialized mobile application developed for tablets, designed to assist in speech therapy and aphasia treatment. This project focused on offering interactive activities to help patients with language disorders improve their communication skills.
 
 The application includes various therapeutic activities such as:
 - **Reading Comprehension**: Interactive exercises to improve reading skills
@@ -154,7 +154,7 @@ fvm flutter build ios --release
 
 ## 📁 Project Structure & Software Architecture
 
-Internally, AfasiaApp implements an architecture of three layers, specifically designed for speech therapy applications, focusing on modularity, modifiability, and clinical effectiveness. The architecture provides a clear separation of concerns between presentation (user interface), business logic, and data persistence (data access) layers.
+Internally, *MyAphasia* implements an architecture of three layers, specifically designed for speech therapy applications, focusing on modularity, modifiability, and clinical effectiveness. The architecture provides a clear separation of concerns between presentation (user interface), business logic, and data persistence (data access) layers.
 
 ### Repository Structure
 
@@ -220,11 +220,11 @@ The application architecture follows our architecture approach:
    - Manages data transformations between domain and persistence formats
 
 <img src="layer-diagram.png" alt="Layer Architecture Diagram" width="500">
-*Our architecture diagram implemented in AfasiaApp*
+*Our architecture diagram implemented in MyAphasia*
 
 ### Therapy Module Implementation
 
-The therapy modules (Reading, Writing, Auditory Recognition) are implemented following our architecture:
+The therapy modules (e.g. Reading, and Writing) are implemented following our architecture:
 
 1. **User Interface Components**:
    - Screens that present therapy exercises to patients
@@ -255,7 +255,7 @@ All communication between layers follows a strict dependency rule: higher layers
 
 ## 📐 Design Patterns
 
-AfasiaApp follows specific development rules and best practices to ensure code quality, maintainability, and scalability:
+*MyAphasia* follows specific development rules and best practices to ensure code quality, maintainability, and scalability:
 
 ### Architectural Patterns
 
@@ -345,7 +345,7 @@ AfasiaApp follows specific development rules and best practices to ensure code q
 
 ## 🤝 Contributing
 
-We welcome contributions to improve AfasiaApp! Please follow these steps:
+We welcome contributions to improve *MyAphasia*! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
